@@ -1,0 +1,42 @@
+/* src/styles/_guestBanner.css */
+.guest-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: var(--brand-50);
+  border-radius: var(--radius-full);
+  color: var(--brand-900);
+  font-size: var(--text-sm);
+  animation: slideDown var(--dur-medium) var(--ease) forwards;
+  position: relative;
+}
+.guest-banner button {
+  background: var(--brand-500);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background var(--dur-quick) var(--ease);
+}
+.guest-banner button:hover {
+  background: var(--brand-600);
+}
+.guest-banner .guest-banner-dismiss {
+  background: none;
+  border: none;
+  color: var(--brand-900);
+  opacity: 0.6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.guest-banner .guest-banner-dismiss:hover {
+  opacity: 1;
+}
+@keyframes slideDown {
+  from { opacity:0; transform: translateY(-10px); }
+  to   { opacity:1; transform: translateY(0); }
+}

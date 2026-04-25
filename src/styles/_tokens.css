@@ -1,0 +1,146 @@
+/* src/styles/_tokens.css */
+
+/* ---------------------------------------------------
+   Spacing – 4‑point scale base
+   --------------------------------------------------- */
+:root {
+  --s-0: 0;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+  --s-32: 128px;
+}
+
+/* ---------------------------------------------------
+   Radii
+   --------------------------------------------------- */
+:root {
+  --radius-sm:   4px;
+  --radius:      8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ---------------------------------------------------
+   Shadows
+   --------------------------------------------------- */
+:root {
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* ---------------------------------------------------
+   Motion & easing
+   --------------------------------------------------- */
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-quick: 120ms;
+  --dur-medium: 180ms;
+  --dur-slow: 280ms;
+}
+
+/* ---------------------------------------------------
+   Typography
+   --------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --text-2xl: 1.5rem;   /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+/* ---------------------------------------------------
+   Brand palette (HSL – easy to adjust)
+   --------------------------------------------------- */
+:root {
+  --brand-h: 255;   /* purple hue */
+  --brand-s: 60%;
+  --brand-l-50: 95%;
+  --brand-l-100: 85%;
+  --brand-l-200: 75%;
+  --brand-l-300: 65%;
+  --brand-l-400: 55%;
+  --brand-l-500: 45%;
+  --brand-l-600: 35%;
+  --brand-l-700: 30%;
+  --brand-l-800: 25%;
+  --brand-l-900: 20%;
+
+  --brand-50: hsla(var(--brand-h), var(--brand-s), var(--brand-l-50), 1);
+  --brand-100: hsla(var(--brand-h), var(--brand-s), var(--brand-l-100), 1);
+  --brand-200: hsla(var(--brand-h), var(--brand-s), var(--brand-l-200), 1);
+  --brand-300: hsla(var(--brand-h), var(--brand-s), var(--brand-l-300), 1);
+  --brand-400: hsla(var(--brand-h), var(--brand-s), var(--brand-l-400), 1);
+  --brand-500: hsla(var(--brand-h), var(--brand-s), var(--brand-l-500), 1);
+  --brand-600: hsla(var(--brand-h), var(--brand-s), var(--brand-l-600), 1);
+  --brand-700: hsla(var(--brand-h), var(--brand-s), var(--brand-l-700), 1);
+  --brand-800: hsla(var(--brand-h), var(--brand-s), var(--brand-l-800), 1);
+  --brand-900: hsla(var(--brand-h), var(--brand-s), var(--brand-l-900), 1);
+}
+
+/* ---------------------------------------------------
+   Glass / liquid UI token
+   --------------------------------------------------- */
+:root {
+  --glass-bg: rgba(255,255,255,0.12);
+  --glass-border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ---------------------------------------------------
+   Global defaults (apply tokens)
+   --------------------------------------------------- */
+html {
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: 1.5;
+  color: var(--text-primary, #111);
+  background: var(--bg-body, #f9fafb);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility classes (follow 4px system) */
+.mt-1 { margin-top: var(--s-1); }
+.mt-2 { margin-top: var(--s-2); }
+.mt-3 { margin-top: var(--s-3); }
+.mt-4 { margin-top: var(--s-4); }
+.mt-6 { margin-top: var(--s-6); }
+.mt-8 { margin-top: var(--s-8); }
+.mb-1 { margin-bottom: var(--s-1); }
+.mb-2 { margin-bottom: var(--s-2); }
+.mb-3 { margin-bottom: var(--s-3); }
+.mb-4 { margin-bottom: var(--s-4); }
+.mb-6 { margin-bottom: var(--s-6); }
+.mb-8 { margin-bottom: var(--s-8); }
+
+/* Focus outline for accessibility */
+:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
