@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { X, Eye, EyeOff, ArrowRight, Sparkles, Building2, ShoppingBag, MessageCircle, User, Calendar, Wrench, ShieldCheck, CheckCircle2, PenSquare } from 'lucide-react'
+import { X, Eye, EyeOff, ArrowRight, Sparkles, Building2, ShoppingBag, MessageCircle, Calendar, ShieldCheck, CheckCircle2, PenSquare } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useAuthModal } from '@/contexts/AuthModalContext'
 import { useToast } from '@/components/ui/Toast'
@@ -10,16 +10,16 @@ import Card from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
 
 const INTENT_CONFIG = {
-  booking:    { icon: Building2, label: 'Complete Booking',   color: '#3B82F6' },
-  forum_post: { icon: PenSquare, label: 'Post Your Question', color: '#8B5CF6' },
-  comment:    { icon: MessageCircle, label: 'Join the Discussion', color: '#0EA5E9' },
-  general:    { icon: Sparkles, label: 'Get Started',         color: '#3B82F6' },
+  booking:    { Icon: Building2,     label: 'Complete Booking',     color: 'var(--brand)' },
+  forum_post: { Icon: PenSquare,     label: 'Post Your Question',  color: 'var(--brand)' },
+  comment:    { Icon: MessageCircle, label: 'Join the Discussion', color: 'var(--sky-500)' },
+  general:    { Icon: Sparkles,      label: 'Get Started',         color: 'var(--brand)' },
 }
 
 const ROLES = [
-  { value: 'guest',      label: 'Planner', icon: Calendar, desc: 'Book halls & vendors' },
-  { value: 'hall_owner', label: 'Owner',    icon: Building2, desc: 'List your halls' },
-  { value: 'vendor',     label: 'Vendor',   icon: ShoppingBag, desc: 'Offer your services' },
+  { value: 'guest',      label: 'Planner',  Icon: Calendar,    desc: 'Book halls & vendors' },
+  { value: 'hall_owner', label: 'Owner',     Icon: Building2,   desc: 'List your halls' },
+  { value: 'vendor',     label: 'Vendor',    Icon: ShoppingBag, desc: 'Offer your services' },
 ]
 
 export default function AuthModal() {
@@ -85,123 +85,93 @@ export default function AuthModal() {
   if (!mounted && !isOpen) return null
 
   const cfg = INTENT_CONFIG[intent] || INTENT_CONFIG.general
-  const Icon = cfg.icon
+  const IntentIcon = cfg.Icon
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300 ${
-        isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}
+      className={`auth-modal-overlay ${isOpen ? 'auth-modal-overlay--visible' : ''}`}
+      onClick={(e) => e.target.classList.contains('auth-modal-overlay') && closeAuthModal()}
       role="dialog"
       aria-modal="true"
     >
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={closeAuthModal} />
-      
-      <div className={`relative w-full max-w-[480px] bg-zinc-900 border border-white/10 rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500 transform ${
-        isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'
-      }`}>
-        {/* Top Gradient Highlight */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 via-purple-500 to-blue-400" />
-        
-        <button 
-          className="absolute right-6 top-6 z-10 w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
-          onClick={closeAuthModal}
-        >
-          <X size={20} />
+      <div className="auth-modal">
+        {/* Accent bar */}
+        <div className="auth-modal-accent" style={{ background: `linear-gradient(90deg, ${cfg.color}, var(--brand-light))` }} />
+
+        <button className="auth-modal-close" onClick={closeAuthModal}>
+          <X size={18} />
         </button>
 
-        <div className="p-10">
-          <header className="mb-10 text-center">
-            <div className={`w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/20`} style={{ background: `${cfg.color}15`, border: `1px solid ${cfg.color}30` }}>
-              {Icon && <Icon size={40} style={{ color: cfg.color }} />}
-            </div>
-            
-            <h2 className="text-3xl font-black text-white mb-3">
-              {tab === 'login' ? 'Welcome Back' : 'Create Account'}
-            </h2>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-[280px] mx-auto">{message}</p>
-            
-            <div className="mt-6 inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/5 rounded-full text-[10px] font-black uppercase tracking-widest text-blue-400">
-              <ShieldCheck size={12} />
-              {cfg.label}
-            </div>
-          </header>
-
-          {/* Tab Switcher */}
-          <div className="flex p-1 bg-black/40 border border-white/5 rounded-2xl mb-8">
-            <button
-              onClick={() => setTab('login')}
-              className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
-                tab === 'login' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'
-              }`}
-            >
-              Log In
-            </button>
-            <button
-              onClick={() => setTab('register')}
-              className={`flex-1 py-3 text-xs font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
-                tab === 'register' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-gray-500 hover:text-gray-300'
-              }`}
-            >
-              Sign Up
-            </button>
+        {/* Header */}
+        <div className="auth-modal-header">
+          <div className="auth-modal-intent-icon">
+            <IntentIcon size={32} style={{ color: cfg.color }} />
           </div>
+          <h2 className="auth-modal-title">
+            {tab === 'login' ? 'Welcome Back' : 'Join EventNest'}
+          </h2>
+          <p className="auth-modal-message">{message}</p>
+          <div className="auth-modal-intent-badge" style={{ background: 'var(--brand-50)', color: 'var(--brand)' }}>
+            <ShieldCheck size={12} /> {cfg.label}
+          </div>
+        </div>
 
+        {/* Tabs */}
+        <div className="auth-modal-tabs">
+          <button className={`auth-modal-tab ${tab === 'login' ? 'active' : ''}`} onClick={() => setTab('login')}>
+            Sign In
+          </button>
+          <button className={`auth-modal-tab ${tab === 'register' ? 'active' : ''}`} onClick={() => setTab('register')}>
+            Register
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="auth-modal-body">
           {tab === 'login' ? (
-            <form onSubmit={handleSubmit(onLogin)} className="space-y-6">
+            <form onSubmit={handleSubmit(onLogin)} className="auth-modal-fields">
               <Input
-                label="EMAIL ADDRESS"
-                placeholder="you@email.com"
-                variant="glass"
+                label="Email"
+                placeholder="you@example.com"
                 error={errors.email?.message}
                 {...register('email', { required: 'Email is required' })}
               />
-              <div className="relative">
+              <div style={{ position: 'relative' }}>
                 <Input
-                  label="PASSWORD"
+                  label="Password"
                   type={showPass ? 'text' : 'password'}
                   placeholder="••••••••"
-                  variant="glass"
                   error={errors.password?.message}
                   {...register('password', { required: 'Password is required' })}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-[3.25rem] text-gray-500 hover:text-gray-300"
+                  style={{ position: 'absolute', right: 12, top: 38, background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
                 >
-                  {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
-              <Button 
-                variant="primary" 
-                className="w-full h-14 rounded-2xl group" 
-                disabled={busy} 
-                type="submit"
-              >
-                {busy ? <Spinner size="sm" /> : <><span className="font-black">CONTINUE</span> <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></>}
+              <Button variant="primary" block size="xl" disabled={busy} type="submit" className="mt-4">
+                {busy ? <Spinner size="sm" /> : <><ArrowRight size={18} /> Sign In</>}
               </Button>
             </form>
           ) : (
-            <form onSubmit={handleSubmit(onRegister)} className="space-y-6">
-              <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-1">WHO ARE YOU?</label>
-                <div className="grid grid-cols-3 gap-3">
+            <form onSubmit={handleSubmit(onRegister)} className="auth-modal-fields">
+              <div className="input-group">
+                <label className="input-label" style={{ marginBottom: 'var(--s-3)', display: 'block' }}>I want to...</label>
+                <div className="auth-modal-roles">
                   {ROLES.map(r => {
-                    const RoleIcon = r.icon
+                    const RIcon = r.Icon
                     return (
                       <button
                         key={r.value}
                         type="button"
                         onClick={() => setSelectedRole(r.value)}
-                        className={`flex flex-col items-center gap-3 p-4 rounded-2xl border transition-all duration-300 ${
-                          selectedRole === r.value 
-                            ? 'bg-blue-600/20 border-blue-500 text-white' 
-                            : 'bg-white/5 border-white/5 text-gray-500 hover:border-white/10'
-                        }`}
+                        className={`auth-modal-role-btn ${selectedRole === r.value ? 'active' : ''}`}
                       >
-                        <RoleIcon size={20} className={selectedRole === r.value ? 'text-blue-400' : 'text-gray-500'} />
-                        <span className="text-[10px] font-black uppercase tracking-tighter">{r.label}</span>
+                        <RIcon size={18} style={{ color: selectedRole === r.value ? 'var(--brand)' : 'var(--text-muted)' }} />
+                        <span className="auth-modal-role-label">{r.label}</span>
                       </button>
                     )
                   })}
@@ -209,57 +179,45 @@ export default function AuthModal() {
               </div>
 
               <Input
-                label="FULL NAME"
+                label="Full Name"
                 placeholder="Ahmad Firdaus"
-                variant="glass"
                 error={errors.fullName?.message}
                 {...register('fullName', { required: 'Full name is required' })}
               />
               <Input
-                label="EMAIL ADDRESS"
-                placeholder="you@email.com"
-                variant="glass"
+                label="Email"
+                placeholder="you@example.com"
                 error={errors.email?.message}
                 {...register('email', { required: 'Email required', pattern: { value: /^\S+@\S+$/, message: 'Invalid email' } })}
               />
-              <div className="relative">
+              <div style={{ position: 'relative' }}>
                 <Input
-                  label="SECURE PASSWORD"
+                  label="Password"
                   type={showPass ? 'text' : 'password'}
-                  placeholder="Min. 6 characters"
-                  variant="glass"
+                  placeholder="Min 6 characters"
                   error={errors.password?.message}
                   {...register('password', { required: 'Password required', minLength: { value: 6, message: 'Min 6 characters' } })}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute right-4 top-[3.25rem] text-gray-500 hover:text-gray-300"
+                  style={{ position: 'absolute', right: 12, top: 38, background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
                 >
-                  {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
 
-              <Button 
-                variant="primary" 
-                className="w-full h-14 rounded-2xl" 
-                disabled={busy} 
-                type="submit"
-              >
-                {busy ? <Spinner size="sm" /> : <><span className="font-black">CREATE ACCOUNT</span> <CheckCircle2 size={18} /></>}
+              <Button variant="primary" block size="xl" disabled={busy} type="submit" className="mt-4">
+                {busy ? <Spinner size="sm" /> : <><Sparkles size={18} /> Join & Continue</>}
               </Button>
             </form>
           )}
 
-          <div className="text-center mt-10">
+          <div className="auth-modal-switch">
             {tab === 'login' ? (
-              <p className="text-sm text-gray-500">
-                New to EventNest? <button onClick={() => setTab('register')} className="text-blue-400 font-bold hover:underline">Create an account</button>
-              </p>
+              <p>Don't have an account? <button className="auth-modal-switch-link" onClick={() => setTab('register')}>Register for free</button></p>
             ) : (
-              <p className="text-sm text-gray-500">
-                Already have an account? <button onClick={() => setTab('login')} className="text-blue-400 font-bold hover:underline">Sign in instead</button>
-              </p>
+              <p>Already have an account? <button className="auth-modal-switch-link" onClick={() => setTab('login')}>Sign in here</button></p>
             )}
           </div>
         </div>

@@ -28,43 +28,6 @@
 }
 
 
-/* ─── DARK MODE TOKENS ─────────────────────────────────────────────── */
-:root[class="dark"], .dark {
-  --brand:        #8C7CFF;
-  --brand-dark:   #6C5CE7;
-  --brand-light:  #A29BFE;
-  --brand-50:     rgba(108, 92, 231, 0.15);
-  --brand-100:    rgba(108, 92, 231, 0.25);
-  
-  --bg:           #0F172A;
-  --bg-white:     rgba(255, 255, 255, 0.03);
-  --bg-card:      rgba(255, 255, 255, 0.05);
-  --bg-hover:     rgba(255, 255, 255, 0.1);
-  --bg-muted:     rgba(255, 255, 255, 0.02);
-  
-  --border:       rgba(255, 255, 255, 0.15);
-  --border-light: rgba(255, 255, 255, 0.08);
-
-  --text:         #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted:   #64748B;
-  --text-inverse: #020617;
-
-  /* Neutrals adjusted for dark */
-  --gray-25:      #0B1121;
-  --gray-50:      #0F172A;
-  --gray-100:     #1E293B;
-  --gray-200:     #334155;
-  --gray-300:     #475569;
-  --gray-400:     #64748B;
-  --gray-500:     #94A3B8;
-  --gray-600:     #CBD5E1;
-  --gray-700:     #E2E8F0;
-  --gray-800:     #F1F5F9;
-  --gray-900:     #F8FAFC;
-  
-  --shadow-lg:    0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.3);
-}
 
 /* ─── RESET ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, MapPin, Calendar, Users, Lock, Edit2, Landmark, ShieldCheck, CreditCard } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, MapPin, Calendar, Users, Lock, Edit2, Landmark, ShieldCheck, CreditCard, Zap } from 'lucide-react'
 import { useBooking } from '@/contexts/BookingContext'
 import { useAuth } from '@/contexts/AuthContext'
 import { useAuthModal } from '@/contexts/AuthModalContext'

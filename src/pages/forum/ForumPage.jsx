@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Plus, TrendingUp, MessageSquare, Flame, X, Search, Filter, ShieldInfo, Sparkles, ChevronDown } from 'lucide-react'
+import { Plus, TrendingUp, MessageSquare, Flame, X, Search, Filter, Info, Sparkles, ChevronDown } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/contexts/AuthContext'
 import { useAuthModal } from '@/contexts/AuthModalContext'

@@ -1,8 +1,11 @@
-/* src/styles/_tokens.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap');
 
-/* ---------------------------------------------------
-   Spacing – 4‑point scale base
-   --------------------------------------------------- */
+/* src/styles/_tokens.css
+   ══════════════════════════════════════════════════════
+   Premium Liquid-Glass Design Tokens
+   ══════════════════════════════════════════════════════ */
+
+/* ─── SPACING – strict 4px scale ────────────────────── */
 :root {
   --s-0: 0;
   --s-1: 4px;
@@ -20,104 +23,175 @@
   --s-32: 128px;
 }
 
-/* ---------------------------------------------------
-   Radii
-   --------------------------------------------------- */
+/* ─── RADII ────────────────────────────────────────── */
 :root {
-  --radius-sm:   4px;
-  --radius:      8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
-  --radius-2xl: 24px;
-  --radius-full: 9999px;
+  --r: 8px;
+  --r-sm: 4px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-2xl: 24px;
+  --r-full: 9999px;
+  /* aliases */
+  --radius-sm: var(--r-sm);
+  --radius: var(--r);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-2xl: var(--r-2xl);
+  --radius-full: var(--r-full);
 }
 
-/* ---------------------------------------------------
-   Shadows
-   --------------------------------------------------- */
+/* ─── SHADOWS (depth) ──────────────────────────────── */
 :root {
-  --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 8px 20px rgba(0,0,0,0.12);
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.14);
+  --shadow-xl: 0 24px 48px rgba(0,0,0,0.18);
+  --shadow-brand: 0 8px 24px rgba(99,102,241,0.30);
 }
 
-/* ---------------------------------------------------
-   Motion & easing
-   --------------------------------------------------- */
+/* ─── MOTION ───────────────────────────────────────── */
 :root {
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 200ms;
   --dur-quick: 120ms;
-  --dur-medium: 180ms;
-  --dur-slow: 280ms;
+  --dur-medium: 200ms;
+  --dur-slow: 320ms;
 }
 
-/* ---------------------------------------------------
-   Typography
-   --------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
-
+/* ─── TYPOGRAPHY ───────────────────────────────────── */
 :root {
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --text-xs: 0.75rem;   /* 12px */
-  --text-sm: 0.875rem;  /* 14px */
-  --text-base: 1rem;    /* 16px */
-  --text-lg: 1.125rem;  /* 18px */
-  --text-xl: 1.25rem;   /* 20px */
-  --text-2xl: 1.5rem;   /* 24px */
-  --text-3xl: 1.875rem; /* 30px */
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
+  --fw-extrabold: 800;
 }
 
-/* ---------------------------------------------------
-   Brand palette (HSL – easy to adjust)
-   --------------------------------------------------- */
+/* ─── PREMIUM COLOR PALETTE ────────────────────────── */
 :root {
-  --brand-h: 255;   /* purple hue */
-  --brand-s: 60%;
-  --brand-l-50: 95%;
-  --brand-l-100: 85%;
-  --brand-l-200: 75%;
-  --brand-l-300: 65%;
-  --brand-l-400: 55%;
-  --brand-l-500: 45%;
-  --brand-l-600: 35%;
-  --brand-l-700: 30%;
-  --brand-l-800: 25%;
-  --brand-l-900: 20%;
+  /* Brand – Electric Indigo */
+  --brand:       #6366F1;
+  --brand-dark:  #4F46E5;
+  --brand-light: #818CF8;
+  --brand-50:  rgba(99,102,241,0.08);
+  --brand-100: rgba(99,102,241,0.14);
+  --brand-200: #C7D2FE;
+  --brand-300: #A5B4FC;
+  --brand-400: #818CF8;
+  --brand-500: #6366F1;
+  --brand-600: #4F46E5;
+  --brand-700: #4338CA;
+  --brand-800: #3730A3;
+  --brand-900: #312E81;
 
-  --brand-50: hsla(var(--brand-h), var(--brand-s), var(--brand-l-50), 1);
-  --brand-100: hsla(var(--brand-h), var(--brand-s), var(--brand-l-100), 1);
-  --brand-200: hsla(var(--brand-h), var(--brand-s), var(--brand-l-200), 1);
-  --brand-300: hsla(var(--brand-h), var(--brand-s), var(--brand-l-300), 1);
-  --brand-400: hsla(var(--brand-h), var(--brand-s), var(--brand-l-400), 1);
-  --brand-500: hsla(var(--brand-h), var(--brand-s), var(--brand-l-500), 1);
-  --brand-600: hsla(var(--brand-h), var(--brand-s), var(--brand-l-600), 1);
-  --brand-700: hsla(var(--brand-h), var(--brand-s), var(--brand-l-700), 1);
-  --brand-800: hsla(var(--brand-h), var(--brand-s), var(--brand-l-800), 1);
-  --brand-900: hsla(var(--brand-h), var(--brand-s), var(--brand-l-900), 1);
+  /* Accent – Emerald */
+  --accent:    #10B981;
+  --accent-50: rgba(16,185,129,0.08);
+
+  /* Semantic */
+  --danger:  #EF4444;
+  --amber:   #F59E0B;
+  --sky-500: #0EA5E9;
+
+  /* Neutrals – Slate */
+  --gray-25:  #F8FAFC;
+  --gray-50:  #F1F5F9;
+  --gray-100: #E2E8F0;
+  --gray-200: #CBD5E1;
+  --gray-300: #94A3B8;
+  --gray-400: #64748B;
+  --gray-500: #475569;
+  --gray-600: #334155;
+  --gray-700: #1E293B;
+  --gray-800: #0F172A;
+  --gray-900: #020617;
+
+  /* Surfaces */
+  --bg:           #FAFBFE;
+  --bg-white:     #FFFFFF;
+  --bg-card:      #FFFFFF;
+  --bg-hover:     #F1F5F9;
+  --bg-muted:     #F8FAFC;
+
+  /* Borders */
+  --border:       #E2E8F0;
+  --border-light: #F1F5F9;
+
+  /* Text */
+  --text:          #0F172A;
+  --text-secondary:#475569;
+  --text-muted:    #94A3B8;
+  --text-inverse:  #FFFFFF;
+
+  /* Glass – Liquid */
+  --glass-bg: rgba(255,255,255,0.65);
+  --glass-bg-strong: rgba(255,255,255,0.85);
+  --glass-border: 1px solid rgba(255,255,255,0.40);
+  --glass-blur: blur(20px) saturate(180%);
 }
 
-/* ---------------------------------------------------
-   Glass / liquid UI token
-   --------------------------------------------------- */
-:root {
-  --glass-bg: rgba(255,255,255,0.12);
+/* ─── DARK MODE ────────────────────────────────────── */
+:root[class="dark"], .dark {
+  --brand:       #818CF8;
+  --brand-dark:  #6366F1;
+  --brand-light: #A5B4FC;
+  --brand-50:  rgba(129,140,248,0.10);
+  --brand-100: rgba(129,140,248,0.18);
+
+  --bg:           #0B0F1A;
+  --bg-white:     rgba(255,255,255,0.03);
+  --bg-card:      rgba(255,255,255,0.04);
+  --bg-hover:     rgba(255,255,255,0.08);
+  --bg-muted:     rgba(255,255,255,0.02);
+
+  --border:       rgba(255,255,255,0.10);
+  --border-light: rgba(255,255,255,0.06);
+
+  --text:          #F1F5F9;
+  --text-secondary:#94A3B8;
+  --text-muted:    #475569;
+  --text-inverse:  #0F172A;
+
+  --gray-25:  #0B1121;
+  --gray-50:  #0F172A;
+  --gray-100: #1E293B;
+  --gray-200: #334155;
+  --gray-300: #475569;
+  --gray-400: #64748B;
+  --gray-500: #94A3B8;
+  --gray-600: #CBD5E1;
+  --gray-700: #E2E8F0;
+  --gray-800: #F1F5F9;
+  --gray-900: #F8FAFC;
+
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-bg-strong: rgba(255,255,255,0.08);
   --glass-border: 1px solid rgba(255,255,255,0.08);
+
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+  --shadow-brand: 0 8px 24px rgba(129,140,248,0.20);
 }
 
-/* ---------------------------------------------------
-   Global defaults (apply tokens)
-   --------------------------------------------------- */
+/* ─── GLOBAL DEFAULTS ──────────────────────────────── */
 html {
   font-family: var(--font-sans);
   font-size: 100%;
   line-height: 1.5;
-  color: var(--text-primary, #111);
-  background: var(--bg-body, #f9fafb);
+  color: var(--text);
+  background: var(--bg);
 }
 
 body {
@@ -125,7 +199,7 @@ body {
   padding: 0;
 }
 
-/* Utility classes (follow 4px system) */
+/* ─── UTILITY CLASSES (4px system) ─────────────────── */
 .mt-1 { margin-top: var(--s-1); }
 .mt-2 { margin-top: var(--s-2); }
 .mt-3 { margin-top: var(--s-3); }
@@ -138,6 +212,23 @@ body {
 .mb-4 { margin-bottom: var(--s-4); }
 .mb-6 { margin-bottom: var(--s-6); }
 .mb-8 { margin-bottom: var(--s-8); }
+.p-0  { padding: 0; }
+.p-3  { padding: var(--s-3); }
+.p-4  { padding: var(--s-4); }
+.p-5  { padding: var(--s-5); }
+.p-6  { padding: var(--s-6); }
+.p-8  { padding: var(--s-8); }
+
+/* Layout helpers */
+.fw-bold { font-weight: 700; }
+.color-brand { color: var(--brand); }
+.color-secondary { color: var(--text-secondary); }
+.text-center { text-align: center; }
+.inline-flex { display: inline-flex; }
+.items-center { align-items: center; }
+.gap-2 { gap: var(--s-2); }
+.rounded-full { border-radius: var(--r-full); }
+.stack { display: flex; flex-direction: column; }
 
 /* Focus outline for accessibility */
 :focus-visible {
